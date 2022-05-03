@@ -1,18 +1,16 @@
 <mat-toolbar>
-  <span>Presto Resto</span>
+  <a href="/"><img src="assets/logo.png"><i>Presto&nbsp;Resto</i></a>
   <span class="spacer"></span>
-  <button mat-stroked-button color="primary">
+  <a href="/login" mat-stroked-button>
     S'identifier
-  </button>
-  <button mat-stroked-button color="primary">
+  </a>
+  <a href="/register" mat-stroked-button>
     S'inscrire
-  </button>
+  </a>
   <button mat-icon-button aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
   </button>
 
 </mat-toolbar>
-
-<app-search [search]="getSearch()"></app-search>
 
 <router-outlet></router-outlet>
