@@ -1,0 +1,12 @@
+<div *ngIf="search">
+
+  <h2 *ngIf="search.content">Results for {{search.content | uppercase}}</h2>
+  <div>
+    <mat-chip-list aria-label="Fish selection">
+      <mat-chip *ngFor="let tag of tags">{{tag}}</mat-chip>
+    </mat-chip-list>
+    <label for="search-name">search name: </label>
+    <input id="search-name" placeholder="Recherche...">
+  </div>
+
+</div>

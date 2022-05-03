@@ -1,12 +1,18 @@
 <mat-toolbar>
-  <button mat-icon-button aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
   <span>Presto Resto</span>
   <span class="spacer"></span>
+  <button mat-stroked-button color="primary">
+    S'identifier
+  </button>
+  <button mat-stroked-button color="primary">
+    S'inscrire
+  </button>
   <button mat-icon-button aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
   </button>
+
 </mat-toolbar>
+
+<app-search [search]="getSearch()"></app-search>
 
 <router-outlet></router-outlet>
