@@ -1,7 +1,10 @@
-######## NEST JS ########
 # compiled output
-/dist
-/node_modules
+*/dist
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
 
 # Logs
 logs
@@ -14,13 +17,14 @@ lerna-debug.log*
 
 # OS
 .DS_Store
+Thumbs.db
 
 # Tests
 /coverage
 /.nyc_output
 
 # IDEs and editors
-/.idea
+.idea/
 .project
 .classpath
 .c9/
@@ -34,47 +38,18 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-
-######## ANGULAR #########
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
-
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 .history/*
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+# Compiled output
+*/dist
+*/tmp
+*/out-tsc
+*/bazel-out
 
-# System files
-.DS_Store
-Thumbs.db
+# Miscellaneous
+*/.angular/cache
+.sass-cache/
+*/connect.lock
+*/coverage
+*/libpeerconnection.log
+testem.log
