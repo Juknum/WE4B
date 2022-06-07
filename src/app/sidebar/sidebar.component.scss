@@ -1,0 +1,27 @@
+mat-drawer {
+  width: 200px;
+
+  &-container {
+    height: 100%;
+  }
+}
+
+.nav {
+  &-title {
+    text-align: center;
+    font-style: italic;
+    padding: 20px;
+  }
+
+  &-btn {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-transform: uppercase;
+
+    &-icon {
+      margin-right: 10px;
+    }
+  }
+}

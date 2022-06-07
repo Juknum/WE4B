@@ -1,0 +1,53 @@
+<mat-card class="sign-up-card">
+  <mat-card-title>Sign Up</mat-card-title>
+  <mat-card-subtitle>One step left to create your account!</mat-card-subtitle>
+
+  <mat-card-content>
+    <mat-card-actions align="end">
+      <a mat-button color="primary" href="sign-in">You already have an account?</a>
+    </mat-card-actions>
+
+    <form [formGroup]="signUpForm" (ngSubmit)="submitForm()">
+      <!-- EMAIL -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+
+        <input class="sign-up-card-input" matInput type="email" placeholder="example@domain.com" formControlName="email" />
+        <mat-error *ngIf="email?.value === '' && email?.touched">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="email?.value !== '' && email?.invalid && email?.touched">
+          Email is invalid
+        </mat-error>
+
+        <mat-icon matSuffix>alternate_email</mat-icon>
+        <mat-hint>Enter your email</mat-hint>
+      </mat-form-field>
+
+      <!-- PASSWORD -->
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+
+        <input class="sign-up-card-input" matInput type="password" placeholder="Password" formControlName="password" />
+        <mat-error *ngIf="password?.value === '' && password?.touched">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="password?.value !== '' && password?.invalid && password?.touched">
+          Password is invalid
+        </mat-error>
+
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-hint>Enter your password</mat-hint>
+
+      </mat-form-field>
+
+    </form>
+
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button type="button" mat-button color="primary" onclick="history.back()">Go back</button>
+    <button type="submit" mat-flat-button color="primary" (click)="submitForm()" [disabled]="password?.invalid || email?.invalid">Submit</button>
+  </mat-card-actions>
+
+</mat-card>
