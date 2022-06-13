@@ -20,14 +20,14 @@ import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { RestaurantsComponent } from './restaurants/restaurants.component';
-import { ProfileComponent } from './profile/profile.component';
-import { HomeComponent } from './home/home.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { SignInComponent } from './sign-in/sign-in.component';
+import { RestaurantComponent } from './components/restaurant/restaurant.component';
+import { RestaurantsComponent } from './components/restaurants/restaurants.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { HomeComponent } from './components/home/home.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [

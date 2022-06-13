@@ -20,9 +20,8 @@ export class AuthService {
 
   async signUp(email: string, password: string) {
     try {
-      // TODO: add email verification
       return await this.afAuth.createUserWithEmailAndPassword(email, password)
-      .then(() => this.router.navigate([ '/profile', this.userData?.uid ]));
+      .then(() => this.router.navigate([ '/profile' ]));
 
     } catch (err) {
       return console.error(err);
@@ -32,7 +31,7 @@ export class AuthService {
   async signIn(email: string, password: string) {
     try {
       return await this.afAuth.signInWithEmailAndPassword(email, password)
-      .then(() => this.router.navigate([ '/profile', this.userData?.uid ]));
+      .then(() => this.router.navigate([ '/profile' ]));
     } catch (err) {
       return console.error(err);
     }
