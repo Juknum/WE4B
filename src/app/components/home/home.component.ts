@@ -8,14 +8,17 @@ import { RestaurantsService } from 'src/app/services/restaurants.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private allRestaurants!: any | null;
+  private restaurants!: any | null;
 
   constructor(private db: RestaurantsService) { }
 
   async ngOnInit(): Promise<void> {
-    this.allRestaurants = await this.db.getAllRestaurants();
-    console.log(this.allRestaurants)
-    console.log(await this.db.getRestaurant("vrEuy6fsTPc9MOmsTiFb"))
+    this.restaurants = await this.db.getAllRestaurants();
+    console.log(this.restaurants)
+  }
+
+  get restaurantsList(): Restaurant[] {
+    return this.restaurants;
   }
 
 }

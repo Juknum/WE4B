@@ -2,15 +2,15 @@
   <!-- SIDEBAR -->
   <mat-drawer #drawer mode="over">
     <h1 class="nav-title">RestoPresto</h1>
+    <a class="nav-btn" mat-button href="/" target="_self"><mat-icon class="nav-btn-icon">home</mat-icon>Home</a>
+
+    <hr>
+
     <a class="nav-btn" *ngIf="!auth.isLoggedIn()" mat-button href="sign-in" target="_self"><mat-icon class="nav-btn-icon">login</mat-icon>Login</a>
     <a class="nav-btn" *ngIf="!auth.isLoggedIn()" mat-button href="sign-up" target="_self"><mat-icon class="nav-btn-icon">add</mat-icon>Register</a>
 
     <a class="nav-btn" mat-button  [routerLink]="['/profile', auth.userId]" *ngIf="auth.isLoggedIn()"><mat-icon class="nav-btn-icon">person</mat-icon>Profile</a>
     <button type="button" class="nav-btn" *ngIf="auth.isLoggedIn()" mat-button (click)="auth.signOut()"><mat-icon class="nav-btn-icon">logout</mat-icon>Logout</button>
-
-    <hr>
-
-    <a class="nav-btn" mat-button href="/" target="_self"><mat-icon class="nav-btn-icon">home</mat-icon>Home</a>
   </mat-drawer>
 
   <!-- PAGES CONTENT -->
