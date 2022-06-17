@@ -15,7 +15,14 @@
 
   <!-- PAGES CONTENT -->
   <mat-drawer-content>
-    <button mat-icon-button type="button" (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+    <div class="menu-bar">
+      <div>
+        <button mat-icon-button type="button" (click)="drawer.toggle()" class="menu-button"><mat-icon>menu</mat-icon></button>
+        <span>Menu</span>
+      </div>
+      <h1 class="menu-title">RestoPresto</h1>
+    </div>
+
     <br>
     <router-outlet></router-outlet>
   </mat-drawer-content>

@@ -6,6 +6,24 @@ mat-drawer {
   }
 }
 
+.menu-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 50px;
+}
+
+.menu-button {
+  margin: 10px;
+}
+
+.menu-title {
+  margin: 20px;
+  font-style: italic;
+}
+
 .nav {
   &-title {
     text-align: center;
