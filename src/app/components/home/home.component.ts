@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Restaurant, Restaurants } from 'src/app/services/interfaces/restaurant';
+import { AuthService } from 'src/app/services/auth.service';
+import { Restaurant } from 'src/app/services/interfaces/restaurant';
 import { RestaurantsService } from 'src/app/services/restaurants.service';
 
 @Component({
@@ -14,7 +15,6 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.restaurants = await this.db.getAllRestaurants();
-    console.log(this.restaurants)
   }
 
   get restaurantsList(): Restaurant[] {

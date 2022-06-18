@@ -23,18 +23,18 @@ import { AppComponent } from './app.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
-import { RestaurantsComponent } from './components/restaurants/restaurants.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { RestaurantCardComponent } from './components/restaurant/restaurant-card/restaurant-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     RestaurantComponent,
-    RestaurantsComponent,
+    RestaurantCardComponent,
     ProfileComponent,
     HomeComponent,
     SidebarComponent,

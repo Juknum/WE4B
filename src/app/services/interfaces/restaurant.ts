@@ -13,7 +13,7 @@ export interface Restaurant {
   cap: string;
   city: string;
   coordinates: WC;
-  header: string; // base-64 image
+  header: string; // firebase URL
   name: string;
   owner: string;
   description: string;

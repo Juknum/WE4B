@@ -21,7 +21,9 @@ export class AuthService {
   async signUp(email: string, password: string) {
     try {
       return await this.afAuth.createUserWithEmailAndPassword(email, password)
-      .then(() => this.router.navigate([ '/profile' ]));
+      .then(() => setTimeout(() => {
+        this.router.navigate([ `/profile/${this.userId}` ]);
+      }, 2000))
 
     } catch (err) {
       return console.error(err);
@@ -31,7 +33,10 @@ export class AuthService {
   async signIn(email: string, password: string) {
     try {
       return await this.afAuth.signInWithEmailAndPassword(email, password)
-      .then(() => this.router.navigate([ '/profile' ]));
+      .then(() => setTimeout(() => {
+        this.router.navigate([ `/profile/${this.userId}` ]);
+      }, 2000))
+
     } catch (err) {
       return console.error(err);
     }

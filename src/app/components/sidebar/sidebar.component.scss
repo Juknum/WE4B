@@ -6,6 +6,12 @@ mat-drawer {
   }
 }
 
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .menu-bar {
   display: flex;
   flex-direction: row;
@@ -13,6 +19,7 @@ mat-drawer {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.1);
   height: 50px;
+  box-shadow: 0px 0px 2px black;
 }
 
 .menu-button {

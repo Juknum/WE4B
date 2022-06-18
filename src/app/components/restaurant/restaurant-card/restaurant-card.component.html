@@ -1,0 +1,20 @@
+<mat-card
+  class="restaurant-card"
+>
+  <mat-card-header class="header">
+    <mat-card-title class="title"><h2>{{ restaurant.name }}</h2></mat-card-title>
+    <mat-card-subtitle class="subtitle">
+      <a href="https://www.google.com/maps/@{{ restaurant.coordinates.latitude }},{{ restaurant.coordinates.longitude }},21z">
+        <mat-icon class="icon">share_location</mat-icon>
+        {{ restaurant.address }}&comma;&nbsp;{{ restaurant.cap }}&nbsp;{{ restaurant.city}}
+      </a>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <img mat-card-image src="{{ restaurant.header }}" alt="banner-image">
+
+  <mat-card-actions>
+    <button mat-button>SEE MORE</button>
+    <button *ngIf="showEditBtn(restaurant.owner)" mat-button>EDIT</button>
+  </mat-card-actions>
+</mat-card>

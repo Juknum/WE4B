@@ -1,0 +1,19 @@
+.profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+
+  > form {
+    display: flex;
+    flex-direction: column;
+
+    > .input {
+      width: 100%;
+    }
+  }
+
+  > img {
+    max-width: 300px;
+  }
+}
