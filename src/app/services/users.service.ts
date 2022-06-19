@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { FirebaseStorage, getStorage, ref, getDownloadURL } from "firebase/storage";
-import { User, UsersRef } from "./interfaces/user";
+import { User } from "../interfaces/user";
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {

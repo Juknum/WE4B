@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore, CollectionReference, Query } from "@angular/fire/compat/firestore";
-import { FirebaseStorage, getDownloadURL, getStorage, ref, uploadString } from "firebase/storage";
-import { Restaurant, RestaurantRef, Restaurants, RestaurantsRef } from "./interfaces/restaurant";
+import { AngularFirestore, } from "@angular/fire/compat/firestore";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { Restaurant, RestaurantRef, Restaurants, RestaurantsRef } from "../interfaces/restaurant";
 
 @Injectable({ providedIn: 'root' })
 export class RestaurantsService {
