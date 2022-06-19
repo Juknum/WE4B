@@ -21,14 +21,4 @@ export class UsersService {
   public async updateUser(params: Partial<User>): Promise<void> {
     return new Promise((resolve) => this.db.collection('users').doc(params.id).update(params).then(resolve))
   }
-
-  public emptyUser(): User {
-    return {
-      id: '',
-      first_name: '',
-      last_name: '',
-      picture: '',
-      auth: '',
-    }
-  }
 }

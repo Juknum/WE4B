@@ -22,13 +22,13 @@ export class ProfileComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.user = await this.userService.getUserFromAuthId(this.route.snapshot.paramMap.get('id')!);
     this.updateUserForm = this.fb.group({
-      first_name: ['', [Validators.required]],
-      last_name: ['', [Validators.required]],
+      first_name: ['', [Validators.required, Validators.maxLength(20)]],
+      last_name: ['', [Validators.required, Validators.maxLength(20)]],
     })
   }
 
   get userInfo(): User {
-    return this.user ?? this.userService.emptyUser();
+    return this.user ?? null;
   }
 
   get firstName() { return this.updateUserForm.get('first_name'); }

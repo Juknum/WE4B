@@ -17,6 +17,16 @@ export class HomeComponent implements OnInit {
     this.restaurants = await this.db.getAllRestaurants();
   }
 
+  async onSearchChange(search: string): Promise<void> {
+    if (search.length === 0) this.restaurants = await this.db.getAllRestaurants();
+
+    else {
+      this.restaurants = null;
+      this.restaurants = await this.db.getRestaurantsWithText(search);
+      console.log(this.restaurants);
+    }
+  }
+
   get restaurantsList(): Restaurant[] {
     return this.restaurants;
   }

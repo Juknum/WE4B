@@ -6,6 +6,7 @@ export interface User {
   first_name: string;
   last_name: string;
   picture: string;   // image URL
+  age: string;
 }
 
 export interface UserRef extends Omit<User, 'picture'> {

@@ -7,7 +7,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
@@ -19,7 +19,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
@@ -28,6 +28,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { RestaurantCardComponent } from './components/restaurant/restaurant-card/restaurant-card.component';
+import { FallbackImageDirective } from './directives/fallbackImage.directive';
 
 @NgModule({
   declarations: [
@@ -39,13 +40,15 @@ import { RestaurantCardComponent } from './components/restaurant/restaurant-card
     HomeComponent,
     SidebarComponent,
     SignInComponent,
+
+    FallbackImageDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
+    MatChipsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

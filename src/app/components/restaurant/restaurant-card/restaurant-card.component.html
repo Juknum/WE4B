@@ -13,8 +13,11 @@
 
   <img mat-card-image src="{{ restaurant.header }}" alt="banner-image">
 
-  <mat-card-actions>
-    <button mat-button>SEE MORE</button>
-    <button *ngIf="showEditBtn(restaurant.owner)" mat-button>EDIT</button>
+  <mat-chip-list>
+    <mat-chip *ngFor="let tag of restaurant.tags">{{ tag }}</mat-chip>
+  </mat-chip-list>
+
+  <mat-card-actions align="end">
+    <button type="button" mat-raised-button>SEE MORE</button>
   </mat-card-actions>
 </mat-card>

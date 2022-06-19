@@ -2,20 +2,21 @@
   <mat-card>
     <mat-card-title>Profile</mat-card-title>
     <mat-card-content class="profile">
-      <form [formGroup]="updateUserForm" (ngSubmit)="submitForm()">
+      <img src="{{ userInfo?.picture }}" fallbackImage="assets/no_profile_picture.webp" alt="" width="300" height="300">
+
+      <form [formGroup]="updateUserForm" (ngSubmit)="submitForm()" class="user-form">
 
         <mat-form-field appearance="outline">
           <mat-label>First Name</mat-label>
-          <input class="input" matInput placeholder="John" formControlName="first_name">
+          <input value="{{ userInfo?.first_name }}" class="input" matInput placeholder="John" formControlName="first_name">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Last Name</mat-label>
-          <input class="input" matInput placeholder="Doe" formControlName="last_name">
+          <input value="{{ userInfo?.last_name }}" class="input" matInput placeholder="Doe" formControlName="last_name">
         </mat-form-field>
 
       </form>
-      <img src="{{ userInfo.picture }}" alt="" width="300" height="300">
     </mat-card-content>
 
     <mat-card-actions align="end">
