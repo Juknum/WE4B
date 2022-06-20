@@ -2,16 +2,32 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 20px;
 
-  > form {
-
-
+  @media (max-width: 936px) {
+    justify-content: center;
+    gap: 20px;
   }
 
-  > img {
-    max-width: 300px;
-    border-radius: 50%;
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+
+    > img {
+      max-width: 300px;
+      border-radius: 50%;
+    }
+  }
+
+  > form {
+    max-width: 50%;
+
+    @media (max-width: 936px) {
+      max-width: 100%;
+    }
   }
 }
 
@@ -23,6 +39,18 @@
   justify-content: center;
 }
 
-.input {
+.row {
   width: 100%;
+
+  &-input {
+    width: calc((100% - 20px) / 2);
+  }
+
+  &-input.left {
+    margin-right: 10px;
+  }
+
+  &-input.right {
+    margin-left: 10px;
+  }
 }

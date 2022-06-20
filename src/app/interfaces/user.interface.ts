@@ -5,9 +5,10 @@ export interface User {
   auth: string;
   first_name: string;
   last_name: string;
-  picture: string;   // image URL
-  age: string;
+  picture: string; // image URL
+  age: number;
 }
+
 
 export interface UserRef extends Omit<User, 'picture'> {
   picture: {

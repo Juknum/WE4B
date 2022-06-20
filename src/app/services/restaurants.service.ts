@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore, } from "@angular/fire/compat/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { Restaurant, RestaurantRef, Restaurants, RestaurantsRef } from "../interfaces/restaurant";
+import { Restaurant, RestaurantRef, Restaurants, RestaurantsRef } from "../interfaces/restaurant.interface";
 
 @Injectable({ providedIn: 'root' })
 export class RestaurantsService {
@@ -16,7 +16,7 @@ export class RestaurantsService {
   private async convertRefToURL(restaurants: RestaurantsRef): Promise<Restaurants> {
     return Promise.all([
       restaurants,
-      ...restaurants.map((restaurant) => getDownloadURL(ref(getStorage(), restaurant.header.path)))
+      ...restaurants.map((restaurant) => !restaurant.header || typeof restaurant.header === 'string' ? restaurant.header : getDownloadURL(ref(getStorage(), restaurant.header.path)))
     ])
     .then((results) => {
       return results[0].map((restaurant, index) => ({ ...restaurant, header: results[index + 1] }) as Restaurant)

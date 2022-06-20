@@ -1,27 +1,56 @@
 <main>
   <mat-card>
-    <mat-card-title>Profile</mat-card-title>
     <mat-card-content class="profile">
-      <img src="{{ userInfo?.picture }}" fallbackImage="assets/no_profile_picture.webp" alt="" width="300" height="300">
+      <div>
+        <img src="{{ userInfo?.picture }}" fallbackImage="assets/no_profile_picture.webp" alt="" width="300" height="300">
+        <input type="file" (change)="selectFile($event)" />
+        <button mat-flat-button color="primary" [disabled]="!selectedFiles" (click)="upload()">Upload{{ percentage !== 100 && percentage !== 0 ? 'ing ' + percentage + '%' : '' }}</button>
+      </div>
 
       <form [formGroup]="updateUserForm" (ngSubmit)="submitForm()" class="user-form">
 
-        <mat-form-field appearance="outline">
-          <mat-label>First Name</mat-label>
-          <input value="{{ userInfo?.first_name }}" class="input" matInput placeholder="John" formControlName="first_name">
-        </mat-form-field>
+        <div class="row">
+          <mat-form-field appearance="outline" class="row-input left">
+            <mat-label>First Name</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="John"
+              formControlName="first_name"
+            />
+            <mat-error *ngIf="firstName?.value === '' && firstName?.touched">Your first name can't be empty</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="row-input right">
+            <mat-label>Last Name</mat-label>
+            <input
+              class="row-input"
+              type="text"
+              matInput
+              placeholder="Doe"
+              formControlName="last_name"
+            />
+            <mat-error *ngIf="lastName?.value === '' && lastName?.touched">Your last name can't be empty</mat-error>
+          </mat-form-field>
+        </div>
 
         <mat-form-field appearance="outline">
-          <mat-label>Last Name</mat-label>
-          <input value="{{ userInfo?.last_name }}" class="input" matInput placeholder="Doe" formControlName="last_name">
+          <mat-label>Age</mat-label>
+          <input
+            class="row"
+            type="number"
+            matInput
+            placeholder="18"
+            formControlName="age"
+          />
+          <mat-error *ngIf="age?.value > 100">Your age name can't be greater than 100</mat-error>
+          <mat-error *ngIf="age?.value < 18">Your age name can't be less than 18</mat-error>
         </mat-form-field>
+
+        <button type="submit" mat-flat-button color="primary" (click)="submitForm()" [disabled]="!isFormValid()">Submit</button>
 
       </form>
     </mat-card-content>
-
-    <mat-card-actions align="end">
-      <button type="submit" mat-flat-button color="primary" (click)="submitForm()" [disabled]="firstName?.invalid || lastName?.invalid">Submit</button>
-    </mat-card-actions>
   </mat-card>
 
 </main>

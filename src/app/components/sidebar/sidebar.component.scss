@@ -20,6 +20,18 @@ main {
   background-color: rgba(0, 0, 0, 0.1);
   height: 50px;
   box-shadow: 0px 0px 2px black;
+
+  &-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    > img {
+      width: 32px;
+      height: 32px;
+      margin-right: 20px;
+    }
+  }
 }
 
 .menu-button {
@@ -32,10 +44,17 @@ main {
 }
 
 .nav {
-  &-title {
-    text-align: center;
-    font-style: italic;
+  &-logo {
     padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    > img {
+      width: 48px;
+      height: 48px;
+    }
   }
 
   &-btn {

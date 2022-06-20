@@ -1,7 +1,7 @@
 <mat-drawer-container autosize>
   <!-- SIDEBAR -->
   <mat-drawer #drawer mode="over">
-    <h1 class="nav-title">RestoPresto</h1>
+    <div  class="nav-logo"><img src="assets/logo_big.png" alt=""></div>
     <a class="nav-btn" mat-button href="/" target="_self"><mat-icon class="nav-btn-icon">home</mat-icon>Home</a>
 
     <hr>
@@ -20,7 +20,10 @@
         <button mat-icon-button type="button" (click)="drawer.toggle()" class="menu-button"><mat-icon>menu</mat-icon></button>
         <span>Menu</span>
       </div>
-      <h1 class="menu-title">RestoPresto</h1>
+      <div class="menu-bar-title">
+        <h1 class="menu-title">RestoPresto</h1>
+        <img src="assets/logo_normal.png" alt="">
+      </div>
     </div>
 
     <br>

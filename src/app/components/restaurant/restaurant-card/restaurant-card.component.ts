@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { Restaurant } from 'src/app/interfaces/restaurant';
+import { Restaurant } from 'src/app/interfaces/restaurant.interface';
 
 @Component({
   selector: 'app-restaurant-card',
