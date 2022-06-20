@@ -38,7 +38,9 @@ export class RestaurantsService {
    * @returns {Restaurant|undefined} The restaurant with the given id, or undefined if it doesn't exist
    */
   public async getRestaurant(id: string): Promise<Restaurant | undefined> {
-    return new Promise<Restaurant | undefined>((resolve) => this.db.collection<Restaurant>('restaurants').doc(id).valueChanges({ idField: 'id' }).subscribe(resolve));
+    return new Promise<any>((resolve) => this.db.collection<Restaurant>('restaurants').doc(id).valueChanges({ idField: 'id' }).subscribe(resolve))
+      .then((restaurant) => this.convertRefToURL([restaurant]))
+      .then((restaurants) => restaurants[0] ?? undefined)
   }
 
   /**

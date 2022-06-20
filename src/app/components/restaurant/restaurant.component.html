@@ -1,1 +1,43 @@
-<p>restaurant works!</p>
+
+<h1 align="center">{{ restaurantInfo?.name  }}</h1>
+<div class="container">
+  <img mat-card-image src="{{ restaurantInfo?.header }}" fallbackImage="assets/no_header_picture.webp" alt="banner-image">
+
+  <mat-chip-list>
+    <mat-chip *ngFor="let tag of restaurantInfo?.tags">{{ tag }}</mat-chip>
+  </mat-chip-list>
+
+  <a class="address" href="https://www.google.com/maps/@{{ restaurantInfo?.coordinates?.latitude }},{{ restaurantInfo?.coordinates?.longitude }},21z">
+    <mat-icon class="icon">share_location</mat-icon>
+    {{ restaurantInfo?.address }}&comma;&nbsp;{{ restaurantInfo?.cap }}&nbsp;{{ restaurantInfo?.city}}
+  </a>
+
+  <p>
+    {{ restaurantInfo?.description }}
+  </p>
+
+  <ul>
+    <li>
+      <span class="label">Owner</span>
+      <span class="value"><img src="{{ restaurantOwnerInfo?.picture }}" fallbackImage="assets/no_profile_picture.webp" alt=""> {{ restaurantOwnerInfo?.first_name }}&nbsp;{{ restaurantOwnerInfo?.last_name }}</span>
+    </li>
+    <li>
+      <span class="label">Phone</span>
+      <span class="value">{{ restaurantPhone ?? 'No phone' }}</span>
+    </li>
+    <li>
+      <span class="label">Website</span>
+      <span class="value">{{ restaurantInfo?.website ?? 'No website' }}</span>
+    </li>
+    <li>
+      <span class="label">Email</span>
+      <span class="value">{{ restaurantInfo?.email ?? 'No email' }}</span>
+    </li>
+    <li>
+      <span class="label">GPS</span>
+      <span class="value">{{ restaurantInfo?.coordinates?.latitude ?? 'No latitude' }}<br>{{ restaurantInfo?.coordinates?.longitude ?? 'No longitude' }}</span>
+    </li>
+  </ul>
+</div>
+
+ 

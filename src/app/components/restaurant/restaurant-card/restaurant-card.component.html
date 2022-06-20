@@ -11,7 +11,7 @@
     </mat-card-subtitle>
   </mat-card-header>
 
-  <img mat-card-image src="{{ restaurant.header }}" alt="banner-image">
+  <img mat-card-image src="{{ restaurant.header }}" fallbackImage="assets/no_header_picture.webp" alt="banner-image">
 
   <mat-chip-list>
     <mat-chip *ngFor="let tag of restaurant.tags">{{ tag }}</mat-chip>

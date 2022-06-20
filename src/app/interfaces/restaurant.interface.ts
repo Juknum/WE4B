@@ -17,6 +17,9 @@ export interface Restaurant {
   name: string;
   owner: string;
   description: string;
+  phone: string;
+  email: string;
+  website: string;
   tags: string[]; // tags used for the search bar
 }
 export interface Restaurants extends Array<Restaurant> {}
