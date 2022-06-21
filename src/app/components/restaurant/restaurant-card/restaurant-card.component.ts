@@ -20,4 +20,13 @@ export class RestaurantCardComponent implements OnInit {
     return id === this.auth.userId;
   }
 
+  getLink() {
+    if (this.restaurant.coordinates.latitude !== 0 && this.restaurant.coordinates.longitude !== 0) return `https://www.google.com/maps/@${this.restaurant.coordinates.latitude},${this.restaurant.coordinates.longitude},21z`
+    else return null;
+  }
+
+  hasLink() {
+    return this.getLink() !== null;
+  }
+
 }

@@ -61,21 +61,40 @@ mat-card ~ h2 {
 
 ul {
   padding-inline-start: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
   > .restaurant-links {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    text-transform: capitalize;
 
     > div {
       display: flex;
       flex-direction: row;
       gap: 10px;
     }
+
+    &::after {
+      $size: 90%;
+      content: '';
+      position: absolute;
+      height: 1px;
+      background-color: #e0e0e0;
+      left: calc(50% - $size / 2);
+      bottom: calc($size / -2 + 5px);
+      width: $size;
+    }
+
+    &:last-child::after {
+      display: none;
+    }
   }
 }
-
 
 .centered {
   display: flex;

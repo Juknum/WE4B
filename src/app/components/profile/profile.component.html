@@ -62,7 +62,7 @@
         <div>
           <a mat-flat-button color="primary" href="/restaurant/{{ restaurant.id }}/edit">Edit</a>
           <a mat-flat-button color="accent" href="/restaurant/{{ restaurant.id }}">Link</a>
-          <a mat-flat-button color="warn" href="/restaurant/{{ restaurant.id }}/delete">Delete</a>
+          <button type="button" mat-flat-button color="warn" (click)="deleteRestaurant(restaurant.id)">Delete</button>
         </div>
       </li>
     </ul>

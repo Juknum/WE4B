@@ -1,0 +1,66 @@
+$small-screen: 936px;
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 80%;
+
+  @media (max-width: $small-screen) {
+    max-width: 100%;
+  }
+}
+
+.header-section{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+
+  > img {
+    max-width: 80%;
+    max-height: 500px;
+    border-radius: 30px;
+  }
+
+  > button {
+    width: 200px;
+  }
+}
+
+.submit-btn {
+  width: 200px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.row {
+  width: 100%;
+  @media (max-width: $small-screen) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-input {
+    width: calc((100% - 20px) / 2);
+
+    @media (max-width: $small-screen) {
+      width: 100%;
+    }
+  }
+
+  &-input.left {
+    margin-right: 10px;
+    @media (max-width: $small-screen) {
+      margin-right: 0;
+    }
+  }
+
+  &-input.right {
+    margin-left: 10px;
+    @media (max-width: $small-screen) {
+      margin-left: 0;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Restaurant } from 'src/app/interfaces/restaurant.interface';
 import { User } from 'src/app/interfaces/user.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { RestaurantsService } from 'src/app/services/restaurants.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -17,6 +18,7 @@ export class RestaurantComponent implements OnInit {
   constructor(
     private restaurantsService: RestaurantsService,
     private usersService: UsersService,
+    private authService: AuthService,
     private route: ActivatedRoute,
   ) { }
 
@@ -26,6 +28,19 @@ export class RestaurantComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.restaurant = await this.restaurantsService.getRestaurant(this.route.snapshot.paramMap.get('id')!);
     this.restaurantOwner = await this.usersService.getUserFromAuthId(this.restaurant?.owner as string)
+  }
+
+  isOwner(): boolean {
+    return this.authService.isLoggedIn() && this.restaurantOwner?.auth === this.authService.userId;
+  }
+
+  getLink() {
+    if (this.restaurant?.coordinates.latitude !== 0 && this.restaurant?.coordinates.longitude !== 0) return `https://www.google.com/maps/@${this.restaurant?.coordinates.latitude},${this.restaurant?.coordinates.longitude},21z`
+    else return null;
+  }
+
+  hasLink() {
+    return this.getLink() !== null;
   }
 
   get restaurantInfo(): Restaurant | null {

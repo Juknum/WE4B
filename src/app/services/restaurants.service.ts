@@ -48,10 +48,11 @@ export class RestaurantsService {
    * @param {String} text search text input
    * @returns {Restaurants|[]} The restaurants that match the searched text (or an empty array if no restaurants match)
    */
-  public async getRestaurantsWithText(text: string): Promise<Restaurants|[]> {
+  public async getRestaurantsFromLabels(text: string): Promise<Restaurants|[]> {
     return new Promise<RestaurantsRef>((resolve) => this.db.collection<RestaurantRef>('restaurants', ref => ref
       // check if the whole text && the splitted text is contained in the tags
-      .where('tags', 'array-contains-any', [text, ...text.split(' ')]))
+      .where('tags', 'array-contains-any', [text, ...text.split(' ')])
+      .orderBy('name', 'asc'))
       .valueChanges({ idField: 'id' }).subscribe(resolve))
       .then(this.convertRefToURL)
   }
@@ -66,5 +67,21 @@ export class RestaurantsService {
       .where('owner', '==', ownerId))
       .valueChanges({ idField: 'id' }).subscribe(resolve))
       .then(this.convertRefToURL)
+  }
+
+  public async createRestaurant(id: string, owner: string): Promise<void> {
+    return this.db.collection('restaurants').doc(id).set({ id, owner })
+  }
+
+  public async updateRestaurant(params: Partial<Restaurant> & { id: string }): Promise<void> {
+    return this.db.collection('restaurants').doc(params.id).update(params)
+  }
+
+  public async updateRestaurantPicture(url: string, id: string): Promise<void> {
+    return this.db.collection('restaurants').doc(id).update({ header: url })
+  }
+
+  public async deleteRestaurant(id: string): Promise<void> {
+    return this.db.collection('restaurants').doc(id).delete()
   }
 }

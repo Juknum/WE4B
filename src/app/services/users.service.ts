@@ -23,10 +23,10 @@ export class UsersService {
   }
 
   public async updateUser(params: Partial<User> & { id: string }): Promise<void> {
-    return new Promise((resolve) => this.db.collection('users').doc(params.id).update(params).then(resolve))
+    return this.db.collection('users').doc(params.id).update(params)
   }
 
   public async updateUserPicture(url: string, id: string): Promise<void> {
-    return new Promise((resolve) => this.db.collection('users').doc(id).update({ picture: url }).then(resolve))
+    return this.db.collection('users').doc(id).update({ picture: url })
   }
 }

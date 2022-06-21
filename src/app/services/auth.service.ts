@@ -6,21 +6,17 @@ import { UsersService } from "./users.service";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private userData!: firebase.User | null;
+  private userData?: firebase.User | null;
 
   constructor(
-    private afAuth: AngularFireAuth, 
-    private router: Router, 
+    private afAuth: AngularFireAuth,
+    private router: Router,
     private usersService: UsersService
   ) {
     this.afAuth.authState.subscribe(user => {
       this.userData = user;
-      localStorage.setItem('user', user === null ? 'null' : JSON.stringify(user));
+      localStorage.setItem('user', !user ? 'null' : JSON.stringify(user));
     })
-  }
-
-  get userId() {
-    return this.userData?.uid;
   }
 
   async signUp(email: string, password: string) {
@@ -51,7 +47,8 @@ export class AuthService {
   async signOut() {
     try {
       return await this.afAuth.signOut()
-      .then(() => this.router.navigate([ '/' ]));
+      .then(() => this.router.navigate([ '/' ]))
+      .then(() => delete this.userData);
     } catch (err) {
       return console.error(err);
     }
@@ -59,6 +56,10 @@ export class AuthService {
 
   isLoggedIn() {
     return this.userData !== null;
+  }
+
+  get userId() {
+    return this.userData?.uid;
   }
 }
 

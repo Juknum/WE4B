@@ -1,8 +1,6 @@
 import { CollectionReference } from "@angular/fire/compat/firestore";
 
 export interface WC {
-  _lat: number;
-  _long: number;
   latitude: number;
   longitude: number;
 }

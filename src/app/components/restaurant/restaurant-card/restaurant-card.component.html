@@ -1,10 +1,15 @@
 <mat-card
   class="restaurant-card"
+  *ngIf="restaurant.name"
 >
   <mat-card-header class="header">
     <mat-card-title class="title"><h2>{{ restaurant.name }}</h2></mat-card-title>
     <mat-card-subtitle class="subtitle">
-      <a href="https://www.google.com/maps/@{{ restaurant.coordinates.latitude }},{{ restaurant.coordinates.longitude }},21z">
+      <a *ngIf="hasLink()" href="{{ getLink() }}">
+        <mat-icon class="icon">share_location</mat-icon>
+        {{ restaurant.address }}&comma;&nbsp;{{ restaurant.cap }}&nbsp;{{ restaurant.city}}
+      </a>
+      <a *ngIf="!hasLink()" >
         <mat-icon class="icon">share_location</mat-icon>
         {{ restaurant.address }}&comma;&nbsp;{{ restaurant.cap }}&nbsp;{{ restaurant.city}}
       </a>

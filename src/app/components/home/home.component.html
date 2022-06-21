@@ -1,9 +1,11 @@
 <form class="search-bar-form">
-  <mat-form-field appearance="fill" class="search-bar" >
+  <mat-form-field appearance="outline" class="search-bar" >
     <mat-label>Search a restaurant</mat-label>
     <input matInput #message maxlength="32" placeholder="Restaurant name, city, CAP..." (input)="onSearchChange(message.value)">
     <mat-hint align="end">{{ message.value.length }} / 32</mat-hint>
   </mat-form-field>
 </form>
 
-<app-restaurant-card *ngFor="let restaurant of restaurantsList" [restaurant]="restaurant"></app-restaurant-card>
+<div class="cards">
+  <app-restaurant-card *ngFor="let restaurant of restaurantsList" [restaurant]="restaurant"></app-restaurant-card>
+</div>

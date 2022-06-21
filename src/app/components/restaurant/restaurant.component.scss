@@ -19,7 +19,7 @@
 
   > ul {
     padding-inline-start: 0;
-    
+
     > li {
       list-style-type: none;
       display: flex;
@@ -47,5 +47,17 @@
         }
       }
     }
+  }
+}
+
+.centered {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  > a {
+    width: 200px;
+    margin-bottom: 20px;
   }
 }

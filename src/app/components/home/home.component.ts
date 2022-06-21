@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
     else {
       this.restaurants = null;
-      this.restaurants = await this.db.getRestaurantsWithText(search);
+      this.restaurants = await this.db.getRestaurantsFromLabels(search);
       console.log(this.restaurants);
     }
   }

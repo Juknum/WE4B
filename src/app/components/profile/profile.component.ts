@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FileUpload } from 'src/app/models/file-upload.model';
 import { User } from 'src/app/interfaces/user.interface';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { UsersService } from 'src/app/services/users.service';
 import { Restaurants } from 'src/app/interfaces/restaurant.interface';
 import { RestaurantsService } from 'src/app/services/restaurants.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profil',
@@ -26,17 +27,26 @@ export class ProfileComponent implements OnInit {
     private usersService: UsersService,
     private restaurantsService: RestaurantsService,
     private fileUploadService: FileUploadService,
+    private authService: AuthService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   async ngOnInit(): Promise<void> {
+    // you must be logged to see your profile page
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate([ `/sign-in` ]);
+      return;
+    }
+
     this.updateUserForm = this.fb.group({
       first_name: ['', [Validators.required, Validators.maxLength(32)]],
       last_name: ['', [Validators.required, Validators.maxLength(32)]],
       age: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
     })
 
-    this.user = await this.usersService.getUserFromAuthId(this.route.snapshot.paramMap.get('id')!);
+    const userId = this.route.snapshot.paramMap.get('id')!;
+    this.user = await this.usersService.getUserFromAuthId(userId);
     this.restaurants = await this.restaurantsService.getRestaurantFromOwnerId(this.user.auth);
 
     this.updateUserForm.patchValue({
@@ -49,12 +59,6 @@ export class ProfileComponent implements OnInit {
   isFormValid(): boolean {
     return this.updateUserForm.valid;
   }
-
-  get userInfo(): User { return this.user ?? null; }
-  get restaurantsOwned(): Restaurants | [] { return this.restaurants ?? []; }
-  get firstName() { return this.updateUserForm?.get('first_name'); }
-  get lastName() { return this.updateUserForm?.get('last_name'); }
-  get age() { return this.updateUserForm?.get('age'); }
 
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
@@ -98,5 +102,16 @@ export class ProfileComponent implements OnInit {
       age: this.updateUserForm.value.age,
     });
   }
+
+  deleteRestaurant(id: string) {
+    this.restaurantsService.deleteRestaurant(id)
+      .then(() => window.location.reload());
+  }
+
+  get userInfo(): User { return this.user ?? null; }
+  get restaurantsOwned(): Restaurants | [] { return this.restaurants ?? []; }
+  get firstName() { return this.updateUserForm?.get('first_name'); }
+  get lastName() { return this.updateUserForm?.get('last_name'); }
+  get age() { return this.updateUserForm?.get('age'); }
 
 }

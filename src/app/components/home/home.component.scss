@@ -5,3 +5,12 @@
 .search-bar-form {
   margin-bottom: 20px;
 }
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
