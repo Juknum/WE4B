@@ -20,10 +20,12 @@ export class RestaurantComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
+  /**
+   * Fetch the restaurant information & the restaurant owner information
+   */
   async ngOnInit(): Promise<void> {
     this.restaurant = await this.restaurantsService.getRestaurant(this.route.snapshot.paramMap.get('id')!);
     this.restaurantOwner = await this.usersService.getUserFromAuthId(this.restaurant?.owner as string)
-    console.log(this.restaurant, this.restaurantOwner);
   }
 
   get restaurantInfo(): Restaurant | null {

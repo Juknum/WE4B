@@ -28,6 +28,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { RestaurantCardComponent } from './components/restaurant/restaurant-card/restaurant-card.component';
+import { RestaurantEditComponent } from './components/restaurant/restaurant-edit/restaurant-edit.component';
 import { FallbackImageDirective } from './directives/fallbackImage.directive';
 
 @NgModule({
@@ -40,8 +41,8 @@ import { FallbackImageDirective } from './directives/fallbackImage.directive';
     HomeComponent,
     SidebarComponent,
     SignInComponent,
-
     FallbackImageDirective,
+    RestaurantEditComponent,
   ],
   imports: [
     BrowserModule,

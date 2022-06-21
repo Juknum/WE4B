@@ -46,12 +46,24 @@ export class RestaurantsService {
   /**
    * Fetch restaurants that have 1 of the given tags
    * @param {String} text search text input
-   * @returns {Restaurants|[]} The restaurants that match the search text (or an empty array if no restaurants match)
+   * @returns {Restaurants|[]} The restaurants that match the searched text (or an empty array if no restaurants match)
    */
   public async getRestaurantsWithText(text: string): Promise<Restaurants|[]> {
     return new Promise<RestaurantsRef>((resolve) => this.db.collection<RestaurantRef>('restaurants', ref => ref
       // check if the whole text && the splitted text is contained in the tags
       .where('tags', 'array-contains-any', [text, ...text.split(' ')]))
+      .valueChanges({ idField: 'id' }).subscribe(resolve))
+      .then(this.convertRefToURL)
+  }
+
+  /**
+   * Fetch restaurants that have the given author ids in the owner field
+   * @param {String} ownerId the author ids to search for
+   * @returns {Restaurants|[]} The restaurants that match the searched id (or an empty array if no restaurants match)
+   */
+  public async getRestaurantFromOwnerId(ownerId: string): Promise<Restaurants|[]> {
+    return new Promise<RestaurantsRef>((resolve) => this.db.collection<RestaurantRef>('restaurants', ref => ref
+      .where('owner', '==', ownerId))
       .valueChanges({ idField: 'id' }).subscribe(resolve))
       .then(this.convertRefToURL)
   }

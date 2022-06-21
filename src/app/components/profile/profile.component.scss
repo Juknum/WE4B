@@ -54,3 +54,32 @@
     margin-left: 10px;
   }
 }
+
+mat-card ~ h2 {
+  margin-top: 20px;
+}
+
+ul {
+  padding-inline-start: 0;
+
+  > .restaurant-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+  }
+}
+
+
+.centered {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

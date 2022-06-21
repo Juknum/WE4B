@@ -1,10 +1,12 @@
-import { Component, createPlatform, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FileUpload } from 'src/app/models/file-upload.model';
 import { User } from 'src/app/interfaces/user.interface';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { UsersService } from 'src/app/services/users.service';
+import { Restaurants } from 'src/app/interfaces/restaurant.interface';
+import { RestaurantsService } from 'src/app/services/restaurants.service';
 
 @Component({
   selector: 'app-profil',
@@ -13,6 +15,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class ProfileComponent implements OnInit {
   private user!: User;
+  private restaurants!: Restaurants | [];
   selectedFiles?: FileList;
   currentFileUpload!: FileUpload;
   percentage: number = 0;
@@ -20,7 +23,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UsersService,
+    private usersService: UsersService,
+    private restaurantsService: RestaurantsService,
     private fileUploadService: FileUploadService,
     private route: ActivatedRoute,
   ) {}
@@ -32,7 +36,8 @@ export class ProfileComponent implements OnInit {
       age: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
     })
 
-    this.user = await this.userService.getUserFromAuthId(this.route.snapshot.paramMap.get('id')!);
+    this.user = await this.usersService.getUserFromAuthId(this.route.snapshot.paramMap.get('id')!);
+    this.restaurants = await this.restaurantsService.getRestaurantFromOwnerId(this.user.auth);
 
     this.updateUserForm.patchValue({
       first_name: this.user.first_name,
@@ -45,10 +50,8 @@ export class ProfileComponent implements OnInit {
     return this.updateUserForm.valid;
   }
 
-  get userInfo(): User {
-    return this.user ?? null;
-  }
-
+  get userInfo(): User { return this.user ?? null; }
+  get restaurantsOwned(): Restaurants | [] { return this.restaurants ?? []; }
   get firstName() { return this.updateUserForm?.get('first_name'); }
   get lastName() { return this.updateUserForm?.get('last_name'); }
   get age() { return this.updateUserForm?.get('age'); }
@@ -65,7 +68,8 @@ export class ProfileComponent implements OnInit {
       if (file) {
         // called once the file has been uploaded
         const callback = () => {
-          this.userService.updateUserPicture(this.currentFileUpload.url, this.user.id);
+          this.usersService.updateUserPicture(this.currentFileUpload.url, this.user.id)
+            .then(() => window.location.reload()) // reload page to actualise the profile picture
         }
 
         // called every time the upload progress changes
@@ -87,7 +91,7 @@ export class ProfileComponent implements OnInit {
       if (this.user[key]) validObject[key] = this.user[key];
     })
 
-    this.userService.updateUser({
+    this.usersService.updateUser({
       ...validObject,
       first_name: this.updateUserForm.value.first_name,
       last_name: this.updateUserForm.value.last_name,
