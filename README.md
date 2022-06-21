@@ -11,6 +11,24 @@ npm run start
 ```
 > Si vous avez des erreurs vérifiez que Angular est bien installé globalement sur votre machine
 
+> **Warning**   
+> Il ne faut pas oublier de configurer le fichier `app/environments/environment.example` vers `app/environments/environment.ts` avec votre configuration Firebase
+
+```typescript
+export const environment = {
+  production: false,
+
+  firebase: {
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
+  }
+};
+```
+
 ### Navigation sur le site
 - Lorsqu'on lance le site / qu'on rejoins le site on arrive sur la page d'acceuil:
 
